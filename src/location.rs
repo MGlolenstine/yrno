@@ -28,6 +28,7 @@ pub struct Location{
 }
 
 impl Location{
+    /// Creates a new location with empty API key.
     pub fn new() -> Self{
         Location{
             api_key: RefCell::new(String::new()),

@@ -1,123 +1,123 @@
 use serde::{Deserialize, Serialize};
 
 // https://api.met.no/weatherapi/locationforecast/2.0/#!/data/get_compact_format
-#[derive(Deserialize, Debug, Serialize)]
-pub struct CompactWeather {}
+// #[derive(Deserialize, Debug, Serialize)]
+// struct CompactWeather {}
 
 #[derive(Deserialize, Debug, Serialize)]
 pub struct CompleteWeather {
     #[serde(rename = "type")]
-    r_type: String,
-    geometry: Geometry,
-    properties: Properties,
+    pub r_type: String,
+    pub geometry: Geometry,
+    pub properties: Properties,
 }
 
 #[derive(Deserialize, Debug, Serialize)]
 pub struct Geometry {
     #[serde(rename = "type")]
-    r_type: String,
-    coordinates: Vec<f32>,
+    pub r_type: String,
+    pub coordinates: Vec<f32>,
 }
 
 #[derive(Deserialize, Debug, Serialize)]
 pub struct Properties {
-    meta: Meta,
-    timeseries: Vec<WeatherInfo>,
+    pub meta: Meta,
+    pub timeseries: Vec<WeatherInfo>,
 }
 
 #[derive(Deserialize, Debug, Serialize)]
 pub struct Meta {
-    updated_at: String,
-    units: Units,
+    pub updated_at: String,
+    pub units: Units,
 }
 
 #[derive(Deserialize, Debug, Serialize)]
 pub struct Units {
-    air_pressure_at_sea_level: String,
-    air_temperature: String,
-    air_temperature_max: String,
-    air_temperature_min: String,
-    cloud_area_fraction: String,
-    cloud_area_fraction_high: String,
-    cloud_area_fraction_low: String,
-    cloud_area_fraction_medium: String,
-    dew_point_temperature: String,
-    fog_area_fraction: String,
-    precipitation_amount: String,
-    relative_humidity: String,
-    ultraviolet_index_clear_sky: String,
-    wind_from_direction: String,
-    wind_speed: String,
+    pub air_pressure_at_sea_level: String,
+    pub air_temperature: String,
+    pub air_temperature_max: String,
+    pub air_temperature_min: String,
+    pub cloud_area_fraction: String,
+    pub cloud_area_fraction_high: String,
+    pub cloud_area_fraction_low: String,
+    pub cloud_area_fraction_medium: String,
+    pub dew_point_temperature: String,
+    pub fog_area_fraction: String,
+    pub precipitation_amount: String,
+    pub relative_humidity: String,
+    pub ultraviolet_index_clear_sky: String,
+    pub wind_from_direction: String,
+    pub wind_speed: String,
 }
 
 #[derive(Deserialize, Debug, Serialize)]
 pub struct WeatherInfo {
-    time: String,
-    data: WeatherData,
+    pub time: String,
+    pub data: WeatherData,
 }
 
 #[derive(Deserialize, Debug, Serialize)]
 pub struct WeatherData {
-    instant: InstantData,
-    next_1_hours: Option<NextHoursData>,
-    next_6_hours: Option<NextHoursData>,
-    next_12_hours: Option<Next12HoursData>,
+    pub instant: InstantData,
+    pub next_1_hours: Option<NextHoursData>,
+    pub next_6_hours: Option<NextHoursData>,
+    pub next_12_hours: Option<Next12HoursData>,
 }
 
 #[derive(Deserialize, Debug, Serialize)]
 pub struct InstantData {
-    details: Details,
+    pub details: Details,
 }
 
 #[derive(Deserialize, Debug, Serialize)]
 pub struct Details {
     #[serde(default)]
-    air_pressure_at_sea_level: f32,
+    pub air_pressure_at_sea_level: f32,
     #[serde(default)]
-    air_temperature: f32,
+    pub air_temperature: f32,
     #[serde(default)]
-    cloud_area_fraction: f32,
+    pub cloud_area_fraction: f32,
     #[serde(default)]
-    cloud_area_fraction_high: f32,
+    pub cloud_area_fraction_high: f32,
     #[serde(default)]
-    cloud_area_fraction_low: f32,
+    pub cloud_area_fraction_low: f32,
     #[serde(default)]
-    cloud_area_fraction_medium: f32,
+    pub cloud_area_fraction_medium: f32,
     #[serde(default)]
-    dew_point_temperature: f32,
+    pub dew_point_temperature: f32,
     #[serde(default)]
-    fog_area_fraction: f32,
+    pub fog_area_fraction: f32,
     #[serde(default)]
-    relative_humidity: f32,
+    pub relative_humidity: f32,
     #[serde(default)]
-    ultraviolet_index_clear_sky: f32,
+    pub ultraviolet_index_clear_sky: f32,
     #[serde(default)]
-    wind_from_direction: f32,
+    pub wind_from_direction: f32,
     #[serde(default)]
-    wind_speed: f32,
+    pub wind_speed: f32,
 }
 
 #[derive(Deserialize, Debug, Serialize)]
 pub struct NextHoursData {
-    summary: Summary,
-    details: Data,
+    pub summary: Summary,
+    pub details: Data,
 }
 
 #[derive(Deserialize, Debug, Serialize)]
 pub struct Summary {
-    symbol_code: String,
+    pub symbol_code: String,
 }
 
 
 #[derive(Deserialize, Debug, Serialize)]
 pub struct Data {
     #[serde(default)]
-    air_temperature_max: f32,
+    pub air_temperature_max: f32,
     #[serde(default)]
-    air_temperature_min: f32,
-    precipitation_amount: f32,
+    pub air_temperature_min: f32,
+    pub precipitation_amount: f32,
 }
 #[derive(Deserialize, Debug, Serialize)]
 pub struct Next12HoursData {
-    summary: Summary,
+    pub summary: Summary,
 }

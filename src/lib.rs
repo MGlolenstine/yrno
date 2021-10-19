@@ -119,9 +119,3 @@ async fn test_request(){
         }
     }
 }
-
-#[test]
-fn generate_url(){
-    let url = format!(, 48.123456789, 2.345343453);
-    dbg!(url);
-}
