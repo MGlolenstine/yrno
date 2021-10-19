@@ -1,27 +1,28 @@
 use std::cell::RefCell;
 use serde::Deserialize;
 
-#[derive(Deserialize)]
+#[derive(Deserialize, Debug)]
 struct LocationResponse{
     results: Vec<LocationResponseEntry>,
 }
 
-#[derive(Deserialize)]
+#[derive(Deserialize, Debug)]
 struct LocationResponseEntry{
     geometry: Geometry
 }
 
-#[derive(Deserialize)]
+#[derive(Deserialize, Debug)]
 struct Geometry{
     location: CoordinateLocation
 }
 
-#[derive(Deserialize, Copy, Clone)]
+#[derive(Deserialize, Debug, Copy, Clone)]
 struct CoordinateLocation{
     lat: f32,
     lng: f32,
 }
 
+#[derive(Default)]
 pub struct Location{
     api_key: RefCell<String>,
 }
@@ -40,7 +41,7 @@ impl Location{
 
     /// Turns address into coordinates using Google's Geocoding API.
     pub async fn geocode_location(&self, location: &str) -> Result<Vec<(f32, f32)>, Box<dyn std::error::Error>>{
-        let url = format!("https://maps.googleapis.com/maps/api/geocode/json?key={}&address={}", self.api_key.borrow(), location);
+        let url = format!("https://maps.googleapis.com/maps/api/geocode/json?key={:.4}&address={:.4}", self.api_key.borrow(), location);
         let response: LocationResponse = reqwest::get(url).await?.json().await?;
         let data = response.results.iter().map(|a|{
             let location = a.geometry.location;
